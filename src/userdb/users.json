@@ -1,0 +1,27 @@
+[
+    { 
+      "username": "gopal", 
+      "password": "qwerty"
+    },
+    { 
+      "username": "sourav", 
+      "password": "15636"
+    },
+    { 
+      "username": "sayan", 
+      "password": "sayan125"
+    },
+
+    { 
+      "username": "John", 
+      "password": "john589"
+    },
+    { 
+       "username": "soumya", 
+       "password": "soumya396"
+    },
+    { 
+       "username": "sreeja", 
+       "password": "sreeja656"
+    }
+]
