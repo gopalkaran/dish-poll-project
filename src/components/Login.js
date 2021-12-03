@@ -18,6 +18,7 @@ const Login = () => {
         e.preventDefault()
         users.forEach(user => {
             if(user.username === userCredential.username && user.password === userCredential.password){
+                localStorage.setItem('loggedUser', JSON.stringify(user));
                 history.push("/dashboard");
             }
         })

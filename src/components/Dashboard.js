@@ -1,42 +1,29 @@
-import React, {useEffect, useState} from 'react'
-import styles from '../css/Dashboard.module.css'
-import { Link } from 'react-router-dom';
+import React, { useState} from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import DishList from './DishList';
+import Nav from './Nav';
+import PollList from './PollList';
+import Dish from "./Dish";
+
 
 
 const Dashboard = () => {
-    const [dishList, setDishList] = useState([]);
-    const [selectionList, setSelectionList] = useState([]);
-    useEffect(() => {
-        fetchItems();
-    }, [])
     
-    const fetchItems =async () =>{
-        const dishes = JSON.parse(localStorage.getItem("dishes"))
-        setDishList(dishes);
-    }
+    const [selectionList, setSelectionList] = useState([]);
 
-    const openIndividualDish = (id) => {
-        const selectedDish = dishList.find(dish => {
-            return dish.id === id ? dish : null
-        })
-        // console.log(selectedDish)
-        localStorage.setItem('selectedDish', JSON.stringify(selectedDish));
-    }
+
+ 
     return (
+    <Router>
         <div>
-           <div className={styles.gridlist}>
-            {
-                dishList.map(dish => {
-                    return(
-                        <Link to={`/${dish.id}`} key={dish.id} className={styles.candidate} onClick={() => openIndividualDish(dish.id)}>
-                            <img src={dish.image} alt={dish.name} className={styles.candidateimg}></img>
-                            <div className={styles.candidatename}>{dish.dishName}</div>
-                        </Link>
-                    ) 
-                })
-            }
+            <Nav />
+            <Switch>
+              <Route path="/dashboard" exact component={DishList} />
+              <Route path="/polllist" component={PollList} />
+              <Route path='/:id' component={Dish} />
+            </Switch>
         </div>
-        </div>
+      </Router>
     )
 }
 

@@ -17,12 +17,33 @@ const Dish = ({match}) => {
 
     const voteYourFavDish = (id) => {
         const dishes = JSON.parse(localStorage.getItem("dishes"))
+        const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+        console.log(loggedUser)
         console.log(id)
         const dishList = dishes.map(dish =>{
-            return id === dish.id && dish.voted === false ?  {...dish , voteCount: dish.voteCount+1, voted: true} : dish
+            if(id === dish.id){
+                console.log(dish.votedBy)
+                var votedBy =[]
+                if(dish.votedBy){
+                    votedBy = dish.votedBy
+                    var present = false
+                    for(let i = 0 ; i<votedBy.length; i++){
+                        if(votedBy[i].username === loggedUser.username) present = true
+                    }
+                    if(!present) votedBy.push({username : loggedUser.username})
+                }
+                else{
+                    votedBy.push({username : loggedUser.username})
+                }
+                return {...dish, voteCount: dish.voteCount+1, votedBy : votedBy }
+            }
+            else{
+                return dish
+            }
         })
         console.log(dishList)
-        setSelectedDish({...selectedDish, voteCount: selectedDish.voteCount+1, voted: true})
+        
+        // setSelectedDish({...selectedDish, voteCount: selectedDish.voteCount+1, votedBy: votedBy})
         localStorage.setItem('dishes', JSON.stringify(dishList));
         
     }
@@ -49,7 +70,7 @@ const Dish = ({match}) => {
            <img src={selectedDish.image} alt={selectedDish.dishName} className={styles.candidateimg} />
            <div className={styles.candidatename}>{selectedDish.dishName}</div>
            <div className={styles.btngroup}>
-               <button className={styles.btn} onClick={() => voteYourFavDish(selectedDish.id)}>{selectedDish.voted? 'voted' : 'vote'}</button>
+               <button className={styles.btn} onClick={() => voteYourFavDish(selectedDish.id)}>Vote</button>
            </div>          
         </div>
     )
