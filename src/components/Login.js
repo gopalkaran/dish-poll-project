@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import users from '../userdb/users.json';
 import { useHistory } from "react-router-dom";
+import styles from "../css/Login.module.css"
 
 
 const Login = () => {
@@ -24,11 +25,12 @@ const Login = () => {
         })
     }
     return (
-        <div>
-            <form onSubmit={onSubmitHandler}>
+        <div className={styles.container}>
+            <form onSubmit={onSubmitHandler} className={styles.form}>
+                <h1>Login</h1>
                 <input type="text" name="username" onChange={onChangeHandler} />
                 <input type="password" name="password" onChange={onChangeHandler} />
-                <input type='submit' value='Login' />
+                <input type='submit' value='Login' className={styles.btn} />
             </form>
         </div>
     )

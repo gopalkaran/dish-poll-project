@@ -1,0 +1,38 @@
+.container{
+    /* background: aqua; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    box-shadow: 0 0 10px 5px #aaa;
+    border-radius: 0.5rem;
+    height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.form input{
+    width: 80%;
+    margin: 0 auto;
+    height: 2rem;
+    font-size: 1.2rem;
+}
+
+.form .btn{
+    cursor: pointer;
+    border: none;
+    background: tomato;
+    color: white;
+    border-radius: 0.2rem;
+}
+
+.form h1{
+    color: tomato;
+}
