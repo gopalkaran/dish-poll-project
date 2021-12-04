@@ -1,16 +1,25 @@
 nav{
     display: flex;
     justify-content: space-around;
-    background: blueviolet;
-    color: white;
+    /* background: tomato; */
+    color: #444;
+    border-bottom: 0.1rem solid #777;
+    height: 3rem;
   }
   
   nav ul{
     list-style: none;
     display: flex;
     gap: 2rem;
+    /* background: turquoise; */
+    justify-content: center;
+    align-items: center;
   }
   
   nav ul li{
     cursor: pointer;
+  }
+
+  .active{
+    border-bottom: 1rem solid tomato;
   }

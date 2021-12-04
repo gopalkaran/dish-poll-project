@@ -4,7 +4,7 @@
     grid-auto-rows: 300px;
     grid-gap: 2rem;
     justify-content: center;
-    margin: 2rem 0;
+    padding: 2rem 0;
   }
   
   .dishimg{

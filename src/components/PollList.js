@@ -49,11 +49,20 @@ const PollList = () => {
     }
 
 
+    const openIndividualDish = (id) => {
+        const selectedDish = dishList.find(dish => {
+            return dish.id === id ? dish : null
+        })
+        // console.log(selectedDish)
+        localStorage.setItem('selectedDish', JSON.stringify(selectedDish));
+    }
+
+
     return (
         <div className={styles.listView}>
             {
                 dishList.map(dish => {
-                       return(<Link to={`/${dish.id}`} key={dish.id} className={styles.dish} >
+                       return(<Link to={`/${dish.id}`} key={dish.id} className={styles.dish} onClick={() => openIndividualDish(dish.id)}>
                             <img src={dish.image} alt={dish.name} className={styles.dishimg}></img>
                             <div className={styles.dishname}>{dish.dishName}</div>
                         </Link>)
