@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import DishList from './DishList';
 import Nav from './Nav';
@@ -8,9 +8,6 @@ import Dish from "./Dish";
 
 
 const Dashboard = () => {
-    
-    const [selectionList, setSelectionList] = useState([]);
-
 
  
     return (

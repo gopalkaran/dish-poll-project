@@ -14,13 +14,7 @@ const Login = () => {
         setUserCredential({...userCredential, [e.target.name]: e.target.value})
     }
 
-    // useEffect(() => {
-    //    const modifiedList = users.map(user => {
-    //        return {...user , voteCount : 0}
-    //    })
-    //    console.log(modifiedList)
-    //    localStorage.setItem('users', JSON.stringify(modifiedList));
-    // }, [])
+
 
     const onSubmitHandler = (e) => {
         e.preventDefault()

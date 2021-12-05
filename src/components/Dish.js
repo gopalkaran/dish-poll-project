@@ -3,8 +3,6 @@ import styles from '../css/Dish.module.css';
 
 const Dish = ({match}) => {
     const [selectedDish, setSelectedDish] = useState({});
-    const [shortlisted, setShortlisted] = useState(false);
-    const [id, setId] = useState('');
     useEffect(() => {
         fetchItem();
     },[]);
