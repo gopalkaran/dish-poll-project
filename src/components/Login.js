@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import users from '../userdb/users.json';
 import { useHistory } from "react-router-dom";
 import styles from "../css/Login.module.css"
 
@@ -15,8 +14,18 @@ const Login = () => {
         setUserCredential({...userCredential, [e.target.name]: e.target.value})
     }
 
+    // useEffect(() => {
+    //    const modifiedList = users.map(user => {
+    //        return {...user , voteCount : 0}
+    //    })
+    //    console.log(modifiedList)
+    //    localStorage.setItem('users', JSON.stringify(modifiedList));
+    // }, [])
+
     const onSubmitHandler = (e) => {
         e.preventDefault()
+        const users = JSON.parse(localStorage.getItem("users"))
+        console.log(users)
         users.forEach(user => {
             if(user.username === userCredential.username && user.password === userCredential.password){
                 localStorage.setItem('loggedUser', JSON.stringify(user));

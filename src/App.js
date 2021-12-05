@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import users from './userdb/users.json';
 
 
 function App() {
@@ -22,6 +23,25 @@ function App() {
     })
     localStorage.setItem('dishes', JSON.stringify(modifiedList));
 }
+
+
+useEffect(() => {
+  const users = JSON.parse(localStorage.getItem("users"))
+    if(!users)
+      fetchUsers()
+}, [])
+
+const fetchUsers = () => {
+
+  const modifiedList = users.map(user => {
+    return {...user , voteCount : 0}
+  })
+  console.log(modifiedList)
+  localStorage.setItem('users', JSON.stringify(modifiedList));
+  
+}
+
+
   return (
     <Router>
       <div className="App">

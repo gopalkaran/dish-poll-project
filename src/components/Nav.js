@@ -11,7 +11,9 @@ const Nav = () => {
 
     const signOut = () =>{
        localStorage.removeItem('loggedUser')
-    //    localStorage.removeItem('dishes')
+      //  localStorage.removeItem('dishes')
+      //  localStorage.removeItem('users')
+
 
        history.push("/")
     }

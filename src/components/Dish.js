@@ -18,6 +18,7 @@ const Dish = ({match}) => {
     const voteYourFavDish = (id) => {
         const dishes = JSON.parse(localStorage.getItem("dishes"))
         const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+        const users = JSON.parse(localStorage.getItem("users"))
         console.log(loggedUser)
         console.log(id)
         const dishList = dishes.map(dish =>{
@@ -25,6 +26,7 @@ const Dish = ({match}) => {
                 console.log(dish.votedBy)
                 var votedBy =[]
                 var voteCount = 0
+                var newList = []
                 if(dish.votedBy){
                     votedBy = dish.votedBy
                     voteCount = dish.voteCount
@@ -33,14 +35,40 @@ const Dish = ({match}) => {
                         if(votedBy[i].username === loggedUser.username) present = true
                     }
                     if(!present) {
-                        votedBy.push({username : loggedUser.username})
-                        voteCount = voteCount + 1
+                        newList = users.map(user => {
+                            if (user.username === loggedUser.username && user.voteCount<3){
+                                votedBy.push({username : loggedUser.username})
+                                voteCount = voteCount + 1
+                            return {...user, voteCount : user.voteCount + 1}
+                            }
+                            else{
+                             return user
+                            }
+                        })
+
                     }
                 }
                 else{
-                    votedBy.push({username : loggedUser.username})
-                    voteCount = voteCount + 1
+                    newList = users.map(user => {
+                        if (user.username === loggedUser.username && user.voteCount<3){
+                            votedBy.push({username : loggedUser.username})
+                            voteCount = voteCount + 1
+                        return {...user, voteCount : user.voteCount + 1}
+                        }
+                        else{
+                         return user
+                        }
+                    })
+                    // votedBy.push({username : loggedUser.username})
+                    // voteCount = voteCount + 1
                 }
+
+                console.log(newList)
+                
+                localStorage.setItem('users', JSON.stringify(newList));
+
+
+
                 return {...dish, voteCount: voteCount, votedBy : votedBy }
             }
             else{
@@ -56,6 +84,8 @@ const Dish = ({match}) => {
     const dislikeYourFavDish = (id) => {
         const dishes = JSON.parse(localStorage.getItem("dishes"))
         const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+        const users = JSON.parse(localStorage.getItem("users"))
+        console.log(users)
         console.log(loggedUser)
         console.log(id)
         const dishList = dishes.map(dish =>{
@@ -63,6 +93,7 @@ const Dish = ({match}) => {
                 console.log(dish.votedBy)
                 var votedBy =[]
                 var voteCount = 0
+                var newList = []
                 if(dish.votedBy){
                     votedBy = dish.votedBy
                     voteCount= dish.voteCount
@@ -70,9 +101,18 @@ const Dish = ({match}) => {
                     for(let i = 0 ; i<votedBy.length; i++){
                         if(votedBy[i].username === loggedUser.username) {
                             // present = true
-                            votedBy.splice(i,1)
-                            console.log(votedBy)
-                            voteCount = voteCount - 1
+                            newList = users.map(user => {
+                                if (user.username === loggedUser.username && user.voteCount>0){
+                                    votedBy.splice(i,1)
+                                    console.log(votedBy)
+                                    voteCount = voteCount - 1
+                                return {...user, voteCount : user.voteCount - 1}
+                                }
+                                else{
+                                 return user
+                                }
+                            })
+
                         }
                     }
                     // if(present) votedBy.push({username : loggedUser.username})
@@ -80,6 +120,10 @@ const Dish = ({match}) => {
                 // else{
                 //     votedBy.push({username : loggedUser.username})
                 // }
+                console.log(newList)
+                
+                localStorage.setItem('users', JSON.stringify(newList));
+
                 return {...dish, voteCount: voteCount, votedBy : votedBy }
             }
             else{
