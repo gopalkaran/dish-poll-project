@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Getting Started with DishPoll App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I have used localstorage as storage to support my app. and list of users I have stored inside users.json file. So only person from the json file can login inside the app others wont be able to login.
 
-## Available Scripts
+## Login Component
 
-In the project directory, you can run:
+In the first page, we will have to put username and password which is present in the users.json then after login we will go inside the app means dashboard page.
 
-### `npm start`
+## Dashboard & DishList Component
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Here we will render all the list of dishes in a gridlist. when we will click on a particular dish from the list we will go into the individual dish page. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Dish Component
 
-### `npm test`
+Here we will see individual dish and there is two buttons below the dish image and name. one button is for like and another for dislike. I have not added any alert for showing dish is liked or disliked but "like" will keep a record in the dishlist that who has liked this particular dish and "dislike" will remove the person from the list for a particular dish item. Also in this component I am maintaining votecount for individual dish and also for individual user. voteCount for individual dish will hold how many people like this dish. and voteCount for individual user will hold how many dishes liked by the an user.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Poll List
 
-### `npm run build`
+In this Component I have calculated who has come first , second and third in terms of votecount and then sorted them based on their voteCount and then I have given them points based on their rank and finally displayed them in descending them based on their voteCount that means the dish which got highest vote or like, will be on the top and the second will be secondand so on.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Logout
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+When we will click this, it will delete loggeduser details from the localstorage and will take us to login page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## PrivateRoute
 
-### `npm run eject`
+This will not let a person go to the dashboard if the user is not signed in.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
